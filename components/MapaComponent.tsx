@@ -2,74 +2,46 @@ import { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const MapaPontosColeta = () => {
+const Mapa = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsClient(true); // Marcar que estamos no lado do cliente
   }, []);
 
   useEffect(() => {
     if (isClient) {
-      // Inicializa o mapa centrado em Presidente Prudente
-      const map = L.map('map').setView([-22.1256, -51.3889], 13);
-
-      // Adiciona a camada de tiles do OpenStreetMap
+      const map = L.map('map').setView([-22.12918223115807, -51.39940012356393], 12);
+      
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(map);
 
-      // Dados dos pontos de coleta
-      const pontosColeta = [
-        {
-          nome: 'Ecoponto Sabará',
-          endereco: 'Rua Adelino Rodrigues Gatto com Rua Afonso Vincoleto',
-          coordenadas: [-22.1250, -51.4120],
-          tipo: 'Recicláveis'
-        },
-        {
-          nome: 'Ecoponto Residencial Bongiovani',
-          endereco: 'Rua Maria Lenita de Macedo Bongiovani com Rua Paulo Aniceto Siqueira',
-          coordenadas: [-22.1240, -51.4100],
-          tipo: 'Recicláveis'
-        },
-        {
-          nome: 'Praça CEU Alvorada',
-          endereco: 'Praça CEU Alvorada, Ana Jacinta',
-          coordenadas: [-22.1330, -51.4220],
-          tipo: 'Eletrônicos'
-        },
-        {
-          nome: 'Praça da Avenida Sussumo Anzai',
-          endereco: 'Avenida Sussumo Anzai',
-          coordenadas: [-22.1330, -51.4180],
-          tipo: 'Eletrônicos'
-        },
-        {
-          nome: 'Antigo pátio de veículos',
-          endereco: 'Avenida Juscelino Kubitschek de Oliveira, próximo ao Prudentão',
-          coordenadas: [-22.1310, -51.4160],
-          tipo: 'Eletrônicos'
-        }
-      ];
+      const ecoIcon = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/128/2921/2921822.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
 
-      // Adiciona marcadores no mapa para cada ponto de coleta
-      pontosColeta.forEach(ponto => {
-        L.marker(ponto.coordenadas)
-          .addTo(map)
-          .bindPopup(`<strong>${ponto.nome}</strong><br>${ponto.endereco}<br>Tipo: ${ponto.tipo}`);
+      map.on('click', function(e) {
+        L.marker([e.latlng.lat, e.latlng.lng], { icon: ecoIcon }).addTo(map)
+          .bindPopup("🌍 Ponto Ecológico Adicionado!");
       });
     }
   }, [isClient]);
 
-  if (!isClient) return null;
+  if (!isClient) {
+    return null; // Retorna null no lado do servidor
+  }
 
   return (
     <div className="mapa">
-      <h1>Pontos de Coleta em Presidente Prudente</h1>
+      <h1>Eco-Mapa</h1>
+      <p>Adote uma zona verde e contribua para um ambiente melhor!</p>
       <div id="map" style={{ width: '100%', height: '500px' }}></div>
     </div>
   );
 };
 
-export default MapaPontosColeta;
+export default Mapa;

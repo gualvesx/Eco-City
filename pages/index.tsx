@@ -28,7 +28,7 @@ const Home = () => {
             com o <span className="green">Eco City</span>
           </h1>
           <p className="typewriter">Discarte os resíduos corretamente, promova a sustentabilidade.</p>
-          <Link href="/mapa" className="cta-button">
+          <Link href="/zonas" className="cta-button">
             Explorar Pontos de Coleta
           </Link>
         </div>
@@ -39,9 +39,9 @@ const Home = () => {
         <h2>Projeto</h2>
         <div className="benefits-grid">
           <div className="benefit-card">
-            <h3>Inovação</h3>
+            <h3>Para Empresas</h3>
             <ul>
-              <li>O EcoCity é uma solução inovadora que tem como principal objetivo mapear, em tempo real, as zonas de coleta de lixo eletrônico e reciclável na cidade. Utilizando recursos de geolocalização e inteligência de dados, o software reúne informações de diversos pontos de coleta, sejam eles oficiais ou de iniciativas privadas e disponibiliza esses dados em uma plataforma intuitiva e interativa..</li>
+              <li>Divulgação da marca.</li>
             </ul>
           </div>
         </div>
@@ -53,7 +53,7 @@ const Home = () => {
         <div className="feature-grid">
           <div className="feature-card">
             <h3>Mapeamento dos pontos de coleta.</h3>
-            <p>Marca no mapa os locais onde ocorrem coletas de lixo eletrônico e reciclável, facilitando o acesso da população a esses pontos.</p>
+            <p>Encontre facilmente os pontos.</p>
           </div>
           <div className="feature-card">
             <h3>Recuperação Ecológica</h3>

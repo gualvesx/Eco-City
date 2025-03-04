@@ -1,0 +1,147 @@
+@import "./variables.scss";
+
+// Reset básico para garantir que a estrutura de layout ocupe toda a tela
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.adocao {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // Garante que a página ocupe 100% da altura da tela
+  padding: 4rem 2rem;
+  text-align: center;
+  overflow: hidden; // Impede que o conteúdo transborde
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .adocao-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: $card-background;
+    border-radius: 10px;
+    padding: 2rem;
+    animation: fadeIn 1s ease-in-out;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  .footer {
+    margin-top: auto; // Empurra o footer para o final da página
+    background-color: $secondary-color;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+  }
+}
+
+// Media Queries para Responsividade
+@media (max-width: 768px) {
+  .adocao {
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .adocao-form {
+      padding: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .adocao {
+    padding: 1rem 0.5rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    .adocao-form {
+      padding: 1rem;
+    }
+  }
+}
+
+#adotar-button {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background-color: $primary-color;
+  color: black;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+#div-animacao {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 350px;
+  height: 350px;
+  position: fixed;
+  background-color: rgb(131, 255, 131);
+  box-shadow: 0px 0px 20px 10px rgb(131, 255, 131);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200px;
+  color: white;
+  animation: aparecer 1s ease-out forwards;
+
+  @keyframes aparecer {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 1;
+      box-shadow: 0px 0px 20px 20px rgb(0, 0, 0);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      box-shadow: 0px 0px 20px 10px rgb(131, 255, 131);
+    }
+  }
+}
